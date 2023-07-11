@@ -17,5 +17,5 @@ while True:
     cv2.imshow("Face Detection", frame)
     if cv2.waitKey(1) == ord("q"):
         break
-cap.release()
+cap.release()#
 cv2.destroyAllWindows()
