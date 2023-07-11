@@ -1,13 +1,21 @@
 import cv2
-print("Package imported")
 
-cap = cv2. VideoCapture (0)
-cap. set (3,640)
-cap. set (4,480)
+cap = cv2.VideoCapture(0)
 
+if not cap.isOpened():
+    print("Error opening video capture")
+    exit()
 
 while True:
-    success, img = cap.read()
-    cv2. imshow("Video",img)
-    if cv2.waitKey (0):
-        break
+    ret, frame = cap.read()
+    if ret:
+        cv2.imshow("Camera", frame)
+
+        # Capture photo when any key is pressed
+        if cv2.waitKey(1) != -1:
+            cv2.imwrite("photo.jpg", frame)
+            print("Photo captured!")
+            break
+
+cap.release()
+cv2.destroyAllWindows()
